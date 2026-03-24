@@ -1,47 +1,61 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A Batalha das 12 Casas</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Batalha das 12 Casas</title>
 
-  <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Cinzel&family=Crimson+Text&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Crimson+Text&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
 <header class="hero">
+  <p class="hero-eyebrow">Exercício 5</p>
   <h1 class="hero-title">A Batalha das 12 Casas</h1>
   <p class="hero-subtitle">Saga do Santuário</p>
 </header>
 
-<section class="game">
+<section class="game-section">
 
-  <!-- INPUT -->
-  <div id="setup">
-    <input type="text" id="nome" placeholder="Seu nome">
-    <input type="number" id="cosmo" placeholder="Cosmo inicial">
-    <button onclick="iniciar()">Iniciar Jornada</button>
-  </div>
+<div class="game-container">
 
-  <!-- STATUS -->
-  <div id="status" class="hidden">
-    <p><strong>Cavaleiro:</strong> <span id="nomePlayer"></span></p>
-    <p><strong>Cosmo:</strong> <span id="cosmoPlayer"></span></p>
-    <p><strong>Casa:</strong> <span id="casaAtual"></span>/12</p>
-  </div>
+<div class="game-body">
 
-  <!-- AÇÕES -->
-  <div id="acoes" class="hidden">
-    <button onclick="lutar()">⚡ Lutar</button>
-    <button onclick="pular()">→ Pular</button>
-    <button onclick="sacrificar()">☠ Dobrar Cosmo</button>
-  </div>
+<!-- SETUP -->
+<div id="setup-panel">
+  <input class="game-input" type="text" id="nome-input" placeholder="Seu nome">
+  <input class="game-input" type="number" id="cosmo-input" placeholder="Cosmo inicial">
+  <button class="btn" onclick="iniciarBatalha()">Iniciar</button>
+</div>
 
-  <!-- LOG -->
-  <div id="log"></div>
+<!-- STATS -->
+<div id="stats-panel" style="display:none;">
+  <p>Nome: <span id="stat-nome"></span></p>
+  <p>Cosmo: <span id="stat-cosmo"></span></p>
+  <p>Casas: <span id="stat-casas"></span></p>
+</div>
 
+<!-- AÇÕES -->
+<div id="battle-arena" style="display:none;">
+  <button class="btn" onclick="lutarCasa()">Lutar</button>
+  <button class="btn" onclick="pularCasa()">Pular</button>
+  <button class="btn btn-danger" onclick="perguntarSacrificio()">Dobrar Cosmo</button>
+</div>
+
+<!-- LOG -->
+<div id="battle-log"></div>
+
+<!-- RESULTADO -->
+<div id="result-banner" style="display:none;">
+  <h2 id="result-title"></h2>
+  <p id="result-msg"></p>
+</div>
+
+</div>
+</div>
 </section>
 
 <script src="script.js"></script>
