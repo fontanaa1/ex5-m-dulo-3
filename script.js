@@ -20,7 +20,7 @@ function atualizar() {
 
 function iniciarBatalha() {
   const nome = document.getElementById("nome-input").value;
-  const cosmo = +document.getElementById("cosmo-input").value;
+  const cosmo = Number(document.getElementById("cosmo-input").value);
 
   if (!nome || cosmo <= 0) {
     alert("Preencha corretamente!");
@@ -28,7 +28,7 @@ function iniciarBatalha() {
   }
 
   if (cosmo < 1000) {
-    if (confirm("Dobrar cosmo?")) {
+    if (confirm("Deseja dobrar seu cosmo inicial?")) {
       estado.cosmoAtual = cosmo * 2;
     } else {
       estado.cosmoAtual = cosmo;
@@ -46,14 +46,14 @@ function iniciarBatalha() {
   document.getElementById("battle-arena").style.display = "block";
 
   atualizar();
-  log("Jornada iniciada!");
+  log("🔥 Jornada iniciada!");
 }
 
 function lutarCasa() {
   let dano = CASAS[estado.casaAtual];
   estado.cosmoAtual -= dano;
 
-  log(`Levou ${dano} de dano`);
+  log(`⚔️ Levou ${dano} de dano`);
 
   if (estado.cosmoAtual <= 0) {
     perder();
@@ -74,7 +74,7 @@ function pularCasa() {
   let dano = Math.floor(CASAS[estado.casaAtual] * 0.3);
   estado.cosmoAtual -= dano;
 
-  log(`Pulou casa (-${dano})`);
+  log(`🏃 Pulou casa (-${dano})`);
 
   if (estado.cosmoAtual <= 0) {
     perder();
@@ -86,10 +86,10 @@ function pularCasa() {
 }
 
 function perguntarSacrificio() {
-  if (confirm("Dobrar cosmo?")) {
+  if (confirm("Tem certeza que deseja dobrar seu cosmo?")) {
     estado.cosmoAtual *= 2;
     atualizar();
-    log("Cosmo dobrado!");
+    log("💥 Cosmo dobrado!");
   }
 }
 
@@ -97,7 +97,7 @@ function vencer() {
   document.getElementById("result-banner").style.display = "block";
 
   document.getElementById("result-title").textContent =
-    `Parabéns ${estado.nome}!`;
+    `🏆 Parabéns ${estado.nome}!`;
 
   document.getElementById("result-msg").textContent =
     `Você salvou Athena com ${estado.cosmoAtual} de cosmo!`;
@@ -107,8 +107,14 @@ function perder() {
   document.getElementById("result-banner").style.display = "block";
 
   document.getElementById("result-title").textContent =
-    "Você morreu";
+    "💀 Você morreu";
 
   document.getElementById("result-msg").textContent =
     "Seu cosmo acabou...";
 }
+
+/* GARANTE QUE OS BOTÕES FUNCIONEM */
+window.iniciarBatalha = iniciarBatalha;
+window.lutarCasa = lutarCasa;
+window.pularCasa = pularCasa;
+window.perguntarSacrificio = perguntarSacrificio;
