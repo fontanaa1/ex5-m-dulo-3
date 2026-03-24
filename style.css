@@ -1,6 +1,5 @@
 :root {
   --gold: #c9a227;
-  --gold-light: #f0d060;
   --crimson: #cc2200;
   --void: #060412;
   --star: #e8e0ff;
@@ -34,6 +33,11 @@ body {
   cursor: pointer;
 }
 
+.btn:hover {
+  background: var(--gold);
+  color: black;
+}
+
 .btn-danger {
   border-color: var(--crimson);
   color: var(--crimson);
@@ -42,4 +46,7 @@ body {
 #battle-log {
   margin-top: 20px;
   text-align: left;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
 }
