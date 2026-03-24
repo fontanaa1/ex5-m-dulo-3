@@ -1,74 +1,114 @@
-const casas = [45, 60, 80, 70, 90, 100, 75, 110, 85, 120, 130, 0];
+const CASAS = [45, 60, 80, 70, 90, 100, 75, 110, 85, 120, 130, 0];
 
 let estado = {
   nome: "",
-  cosmo: 0,
-  casa: 0
+  cosmoInicial: 0,
+  cosmoAtual: 0,
+  casaAtual: 0,
+  statusVida: "Vivo"
 };
 
 function log(msg) {
-  document.getElementById("log").innerHTML += `<p>${msg}</p>`;
+  document.getElementById("battle-log").innerHTML += `<p>${msg}</p>`;
 }
 
-function iniciar() {
-  const nome = document.getElementById("nome").value;
-  const cosmo = +document.getElementById("cosmo").value;
+function atualizar() {
+  document.getElementById("stat-nome").textContent = estado.nome;
+  document.getElementById("stat-cosmo").textContent = estado.cosmoAtual;
+  document.getElementById("stat-casas").textContent = estado.casaAtual + " / 12";
+}
+
+function iniciarBatalha() {
+  const nome = document.getElementById("nome-input").value;
+  const cosmo = +document.getElementById("cosmo-input").value;
 
   if (!nome || cosmo <= 0) {
     alert("Preencha corretamente!");
     return;
   }
 
+  if (cosmo < 1000) {
+    if (confirm("Dobrar cosmo?")) {
+      estado.cosmoAtual = cosmo * 2;
+    } else {
+      estado.cosmoAtual = cosmo;
+    }
+  } else {
+    estado.cosmoAtual = cosmo;
+  }
+
   estado.nome = nome;
-  estado.cosmo = cosmo;
-  estado.casa = 0;
+  estado.cosmoInicial = estado.cosmoAtual;
+  estado.casaAtual = 0;
 
-  document.getElementById("setup").classList.add("hidden");
-  document.getElementById("status").classList.remove("hidden");
-  document.getElementById("acoes").classList.remove("hidden");
+  document.getElementById("setup-panel").style.display = "none";
+  document.getElementById("stats-panel").style.display = "block";
+  document.getElementById("battle-arena").style.display = "block";
 
   atualizar();
-  log("⚔ Jornada iniciada!");
+  log("Jornada iniciada!");
 }
 
-function atualizar() {
-  document.getElementById("nomePlayer").textContent = estado.nome;
-  document.getElementById("cosmoPlayer").textContent = estado.cosmo;
-  document.getElementById("casaAtual").textContent = estado.casa + 1;
-}
+function lutarCasa() {
+  let dano = CASAS[estado.casaAtual];
+  estado.cosmoAtual -= dano;
 
-function lutar() {
-  let dano = casas[estado.casa];
-  estado.cosmo -= dano;
+  log(`Levou ${dano} de dano`);
 
-  log(`💥 Você levou ${dano} de dano`);
-
-  if (estado.cosmo <= 0) {
-    log("☠ Você morreu!");
+  if (estado.cosmoAtual <= 0) {
+    perder();
     return;
   }
 
-  estado.casa++;
-  atualizar();
-}
+  estado.casaAtual++;
 
-function pular() {
-  let dano = Math.floor(casas[estado.casa] * 0.3);
-  estado.cosmo -= dano;
-
-  log(`→ Pulou casa (-${dano})`);
-
-  if (estado.cosmo <= 0) {
-    log("☠ Você morreu!");
+  if (estado.casaAtual >= 12) {
+    vencer();
     return;
   }
 
-  estado.casa++;
   atualizar();
 }
 
-function sacrificar() {
-  estado.cosmo *= 2;
-  log("⚡ Cosmo dobrado!");
+function pularCasa() {
+  let dano = Math.floor(CASAS[estado.casaAtual] * 0.3);
+  estado.cosmoAtual -= dano;
+
+  log(`Pulou casa (-${dano})`);
+
+  if (estado.cosmoAtual <= 0) {
+    perder();
+    return;
+  }
+
+  estado.casaAtual++;
   atualizar();
+}
+
+function perguntarSacrificio() {
+  if (confirm("Dobrar cosmo?")) {
+    estado.cosmoAtual *= 2;
+    atualizar();
+    log("Cosmo dobrado!");
+  }
+}
+
+function vencer() {
+  document.getElementById("result-banner").style.display = "block";
+
+  document.getElementById("result-title").textContent =
+    `Parabéns ${estado.nome}!`;
+
+  document.getElementById("result-msg").textContent =
+    `Você salvou Athena com ${estado.cosmoAtual} de cosmo!`;
+}
+
+function perder() {
+  document.getElementById("result-banner").style.display = "block";
+
+  document.getElementById("result-title").textContent =
+    "Você morreu";
+
+  document.getElementById("result-msg").textContent =
+    "Seu cosmo acabou...";
 }
