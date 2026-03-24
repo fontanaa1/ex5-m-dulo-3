@@ -1,22 +1,80 @@
-
-body {
-  background-color: #0f172a;
-  color: white;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  padding-top: 100px;
+:root {
+  --gold: #c9a227;
+  --dark: #0a0720;
+  --light: #e8e0ff;
+  --danger: #cc2200;
 }
 
-button {
-  padding: 15px 25px;
-  font-size: 16px;
-  background-color: #ef4444;
-  border: none;
-  border-radius: 8px;
+body {
+  margin: 0;
+  font-family: 'Crimson Text', serif;
+  background: radial-gradient(circle at center, #0a0720, #03020a);
+  color: var(--light);
+  text-align: center;
+}
+
+/* HERO */
+.hero {
+  padding: 60px 20px;
+}
+
+.hero-title {
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 3rem;
+  color: var(--gold);
+}
+
+.hero-subtitle {
+  font-family: 'Cinzel', serif;
+  color: #b8c4d8;
+}
+
+/* GAME */
+.game {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background: rgba(10,7,32,.8);
+  border: 1px solid rgba(201,162,39,.3);
+}
+
+/* INPUT */
+input {
+  padding: 10px;
+  margin: 5px;
+  background: transparent;
+  border: 1px solid var(--gold);
   color: white;
+}
+
+/* BOTÕES */
+button {
+  padding: 10px 15px;
+  margin: 5px;
+  background: linear-gradient(135deg, rgba(201,162,39,.2), rgba(201,162,39,.05));
+  border: 1px solid var(--gold);
+  color: var(--gold);
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #dc2626;
+  box-shadow: 0 0 10px rgba(201,162,39,.4);
+}
+
+/* STATUS */
+#status {
+  margin-top: 20px;
+}
+
+/* LOG */
+#log {
+  margin-top: 20px;
+  text-align: left;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+/* UTIL */
+.hidden {
+  display: none;
 }
