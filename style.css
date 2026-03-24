@@ -1,45 +1,24 @@
 :root {
   --gold: #c9a227;
-  --dark: #0a0720;
-  --light: #e8e0ff;
-  --danger: #cc2200;
+  --gold-light: #f0d060;
+  --crimson: #cc2200;
+  --void: #060412;
+  --star: #e8e0ff;
 }
 
 body {
-  margin: 0;
+  background: var(--void);
+  color: var(--star);
   font-family: 'Crimson Text', serif;
-  background: radial-gradient(circle at center, #0a0720, #03020a);
-  color: var(--light);
   text-align: center;
-}
-
-/* HERO */
-.hero {
-  padding: 60px 20px;
 }
 
 .hero-title {
   font-family: 'Cinzel Decorative', cursive;
-  font-size: 3rem;
   color: var(--gold);
 }
 
-.hero-subtitle {
-  font-family: 'Cinzel', serif;
-  color: #b8c4d8;
-}
-
-/* GAME */
-.game {
-  max-width: 600px;
-  margin: auto;
-  padding: 20px;
-  background: rgba(10,7,32,.8);
-  border: 1px solid rgba(201,162,39,.3);
-}
-
-/* INPUT */
-input {
+.game-input {
   padding: 10px;
   margin: 5px;
   background: transparent;
@@ -47,34 +26,20 @@ input {
   color: white;
 }
 
-/* BOTÕES */
-button {
-  padding: 10px 15px;
-  margin: 5px;
-  background: linear-gradient(135deg, rgba(201,162,39,.2), rgba(201,162,39,.05));
+.btn {
+  padding: 10px;
   border: 1px solid var(--gold);
+  background: transparent;
   color: var(--gold);
   cursor: pointer;
 }
 
-button:hover {
-  box-shadow: 0 0 10px rgba(201,162,39,.4);
+.btn-danger {
+  border-color: var(--crimson);
+  color: var(--crimson);
 }
 
-/* STATUS */
-#status {
-  margin-top: 20px;
-}
-
-/* LOG */
-#log {
+#battle-log {
   margin-top: 20px;
   text-align: left;
-  max-height: 200px;
-  overflow-y: auto;
-}
-
-/* UTIL */
-.hidden {
-  display: none;
 }
