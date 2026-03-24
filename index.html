@@ -2,14 +2,48 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Batalha das 12 Casas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Batalha das 12 Casas</title>
+
   <link rel="stylesheet" href="style.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Cinzel&family=Crimson+Text&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <h1>Batalha das 12 Casas</h1>
-  <button onclick="iniciarJornada()">Iniciar Jornada</button>
+<header class="hero">
+  <h1 class="hero-title">A Batalha das 12 Casas</h1>
+  <p class="hero-subtitle">Saga do Santuário</p>
+</header>
 
-  <script src="script.js"></script>
+<section class="game">
+
+  <!-- INPUT -->
+  <div id="setup">
+    <input type="text" id="nome" placeholder="Seu nome">
+    <input type="number" id="cosmo" placeholder="Cosmo inicial">
+    <button onclick="iniciar()">Iniciar Jornada</button>
+  </div>
+
+  <!-- STATUS -->
+  <div id="status" class="hidden">
+    <p><strong>Cavaleiro:</strong> <span id="nomePlayer"></span></p>
+    <p><strong>Cosmo:</strong> <span id="cosmoPlayer"></span></p>
+    <p><strong>Casa:</strong> <span id="casaAtual"></span>/12</p>
+  </div>
+
+  <!-- AÇÕES -->
+  <div id="acoes" class="hidden">
+    <button onclick="lutar()">⚡ Lutar</button>
+    <button onclick="pular()">→ Pular</button>
+    <button onclick="sacrificar()">☠ Dobrar Cosmo</button>
+  </div>
+
+  <!-- LOG -->
+  <div id="log"></div>
+
+</section>
+
+<script src="script.js"></script>
 </body>
 </html>
